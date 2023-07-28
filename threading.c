@@ -5,10 +5,11 @@ void *rountine(void *arg)
     t_philo *philo;
     
     philo = (t_philo *)arg;
-    if (philo->id % 2 == 0)
-        usleep(2000);
     pthread_create(&philo->tid, NULL, supervisor, (void *)philo);
     pthread_detach(philo->tid);
+    if (philo->id % 2 == 0)
+        usleep(2000);
+    
     //philo->kk = get_time();
     int i = 0;
     while (1)
