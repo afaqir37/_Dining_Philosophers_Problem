@@ -21,6 +21,9 @@ int _fill_structs(t_base *data, int ac, char **av)
     if (!data->tid_arr)
         return (1);
     pthread_mutex_init(&data->print, NULL);
+    pthread_mutex_init(&data->m_death, NULL);
+
+    data->start_time = get_time();
 
     return (_init_philos(data));
 
@@ -40,10 +43,10 @@ int  _init_philos(t_base *data)
         data->philos[i].meals_count = 0;
         data->philos[i].mutex = mutex_array;
         data->philos[i].base = data;
-       // pthread_mutex_init(&data->philos[i].print, NULL);
+        pthread_mutex_init(&data->philos[i].meal_prot, NULL);
         i++;
 
     }
 
-
+    return (0);
 }
