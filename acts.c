@@ -10,6 +10,9 @@ void    _eat(t_philo *philo)
     pthread_mutex_lock(&philo->meal_prot);
     philo->last_meal = get_time();
     pthread_mutex_unlock(&philo->meal_prot);
+    pthread_mutex_lock(&philo->count_prot);
+    philo->meals_count++;
+    pthread_mutex_unlock(&philo->count_prot);
     ft_usleep(philo->base->time_to_eat);
     pthread_mutex_unlock(&philo->mutex[philo->id % philo->base->nb_of_philos]);
     pthread_mutex_unlock(&philo->mutex[philo->id -1]);

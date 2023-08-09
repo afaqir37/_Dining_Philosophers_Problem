@@ -12,12 +12,14 @@ void *rountine(void *arg)
     int i = 0;
     while (1)
     {
+        if (philo->base->nb_of_meals && philo->meals_count == philo->base->nb_of_meals)
+            return 0;
         _eat(philo);
         _sleep_think(philo);
-        pthread_mutex_lock(&philo->base->m_death);
-        if (philo->base->is_dead == 0)
-            break;
-       pthread_mutex_unlock(&philo->base->m_death);
+    //     pthread_mutex_lock(&philo->base->m_death);
+    //     if (philo->base->is_dead == 0)
+    //         break;
+    //    pthread_mutex_unlock(&philo->base->m_death);
     }
    
 
@@ -39,20 +41,13 @@ int    _launch_threads(t_base *data)
     
     i = 0;
     while (data->is_dead) {
-        pthread_mutex_lock(&data->philos[i].meal_prot);
-        if (get_time() - data->philos[i].last_meal >= data->time_to_die)
-        {
-            pthread_mutex_unlock(&data->philos[i].meal_prot);
-            pthread_mutex_lock(&data->m_death);
-            data->is_dead = 0;
-            pthread_mutex_unlock(&data->m_death);
-            ft_print_status(&data->philos[i], "died");
-            
-        }
-        else
-            pthread_mutex_unlock(&data->philos[i].meal_prot);
+        _check_death(&data->philos[i]);
+        _check_meals(data);
+
+
         i = i % data->nb_of_philos;
     }
+
     return 0;
 }
 

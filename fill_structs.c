@@ -44,6 +44,7 @@ int  _init_philos(t_base *data)
         data->philos[i].mutex = mutex_array;
         data->philos[i].base = data;
         pthread_mutex_init(&data->philos[i].meal_prot, NULL);
+        pthread_mutex_init(&data->philos[i].count_prot, NULL);
         i++;
 
     }

@@ -17,7 +17,8 @@ typedef struct s_philo
     pthread_mutex_t *   mutex;
     
     struct s_base *     base;  
-    pthread_mutex_t     meal_prot; 
+    pthread_mutex_t     meal_prot;
+    pthread_mutex_t     count_prot;
 
 }   t_philo;
 
@@ -48,7 +49,8 @@ void    _sleep_think(t_philo *philo);
 long int get_time(void);
 void ft_usleep(long int time);
 void ft_print_status(t_philo *philo, char *str);
-void    *supervisor(void *arg);
+void    _check_meals(t_base *data);
+void    _check_death(t_philo    *philos);
 
 
 # endif

@@ -1,6 +1,7 @@
 CFLAGS = -W -W -W -fsanitize=thread 
 SRC = check_input.c fill_structs.c main.c ft_atoi.c \
-	  supervisor.c  threading.c acts.c time.c
+	  check_death_meals.c  threading.c acts.c time.c \
+
 OBJ = $(SRC:.c=.o)
 NAME = philo
 RM = rm -rf
