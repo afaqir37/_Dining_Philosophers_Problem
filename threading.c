@@ -7,8 +7,9 @@ void *rountine(void *arg)
     philo = (t_philo *)arg;
     if (philo->id % 2 == 0)
         usleep(2000);
-    
+    pthread_mutex_lock(&philo->meal_prot);
     philo->last_meal = get_time();
+    pthread_mutex_unlock(&philo->meal_prot);
     int i = 0;
     while (1)
     {
