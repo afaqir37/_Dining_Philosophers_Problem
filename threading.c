@@ -8,7 +8,7 @@ void *rountine(void *arg)
     if (philo->id % 2 == 0)
         usleep(2000);
     
-    
+    philo->last_meal = get_time();
     int i = 0;
     while (1)
     {
