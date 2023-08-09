@@ -36,6 +36,7 @@ int    _launch_threads(t_base *data)
         if (pthread_create(&data->tid_arr[i], NULL, rountine, &data->philos[i]))
             return (1);
         usleep(10);
+        pthread_detach(data->tid_arr[i]);
         i++;
     }
     
