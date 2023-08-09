@@ -1,4 +1,4 @@
-CFLAGS = -W -W -W -pthread 
+CFLAGS = -W -W -W -fsanitize=thread 
 SRC = check_input.c fill_structs.c main.c ft_atoi.c \
 	  supervisor.c  threading.c acts.c time.c
 OBJ = $(SRC:.c=.o)

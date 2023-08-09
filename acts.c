@@ -27,5 +27,12 @@ void ft_print_status(t_philo *philo, char *str)
 {
     pthread_mutex_lock(&philo->base->print);
     printf("%ld %d %s\n", get_time() - philo->base->start_time, philo->id, str);
+    pthread_mutex_lock(&philo->base->m_death);
+    if (philo->base->is_dead == 0)
+    {
+        pthread_mutex_unlock(&philo->base->m_death);
+        return ;
+    }
+    pthread_mutex_unlock(&philo->base->m_death);
     pthread_mutex_unlock(&philo->base->print);
 }
