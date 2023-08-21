@@ -5,8 +5,8 @@ void *rountine(void *arg)
     t_philo *philo;
     
     philo = (t_philo *)arg;
-    if (philo->id % 2 == 0)
-        usleep(2000);
+    // if (philo->id % 2 == 0)
+    //     usleep(2000);
     pthread_mutex_lock(&philo->meal_prot);
     philo->last_meal = get_time();
     pthread_mutex_unlock(&philo->meal_prot);
@@ -36,7 +36,7 @@ int    _launch_threads(t_base *data)
     {
         if (pthread_create(&data->tid_arr[i], NULL, rountine, &data->philos[i]))
             return (1);
-        usleep(10);
+        usleep(100);
         pthread_detach(data->tid_arr[i]);
         i++;
     }
@@ -46,7 +46,7 @@ int    _launch_threads(t_base *data)
         _check_death(&data->philos[i]);
         _check_meals(data);
 
-
+        i++;
         i = i % data->nb_of_philos;
     }
 
