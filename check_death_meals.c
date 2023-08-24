@@ -3,8 +3,10 @@
 void    _check_death(t_philo    *philos)
 {
         pthread_mutex_lock(&philos->meal_prot);
+        //printf("time to die = %ld\n",get_time() - philos->last_meal);
         if (get_time() - philos->last_meal >= philos->base->time_to_die)
         {
+           // printf("here\n");
             pthread_mutex_unlock(&philos->meal_prot);
             pthread_mutex_lock(&philos->base->m_death);
             philos->base->is_dead = 0;
