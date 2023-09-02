@@ -39,18 +39,12 @@ int    _launch_threads(t_base *data)
         if (pthread_create(&data->tid_arr[i], NULL, rountine, &data->philos[i]))
             return (1);
         pthread_detach(data->tid_arr[i]);
-        i = i + 2;
-        usleep(100);
-       if (i >= data->nb_of_philos && !token)
-       {
-            i = 1;
-            token = 1;
-          //  usleep(50000);
-       }
+       usleep(10);
+       i++;
     }
     
     i = 0;
-   // usleep(3000);
+  //  usleep(300);
     while (data->is_dead) {
         _check_death(&data->philos[i]);
         _check_meals(data);
@@ -69,6 +63,6 @@ void ft_usleep(long int time)
     current_time = get_time();
     while (get_time() - current_time < time)
     {
-        usleep(100);
+        usleep(30);
     }
 }
