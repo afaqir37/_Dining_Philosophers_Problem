@@ -1,5 +1,4 @@
-CC = gcc-11
-CFLAGS = -W -W -W 
+CFLAGS = -Wall -Wextra -Werror 
 SRC = check_input.c fill_structs.c main.c ft_atoi.c \
 	  check_death_meals.c  threading.c acts.c time.c \
 
