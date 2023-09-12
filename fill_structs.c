@@ -6,7 +6,7 @@
 /*   By: afaqir <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 18:41:24 by afaqir            #+#    #+#             */
-/*   Updated: 2023/09/12 18:57:19 by afaqir           ###   ########.fr       */
+/*   Updated: 2023/09/12 21:16:13 by afaqir           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	_fill_structs(t_base *data, int ac, char **av)
 
 int	_init_philos(t_base *data)
 {
-	pthread_mutex_t		*mutex;
+	pthread_mutex_t		*mutex_array;
 	int					i;
 
 	i = 0;
