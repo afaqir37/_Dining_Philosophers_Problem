@@ -11,17 +11,13 @@ void *rountine(void *arg)
     pthread_mutex_lock(&philo->meal_prot);
     philo->last_meal = get_time();
     pthread_mutex_unlock(&philo->meal_prot);
-    int i = 0;
     while (1)
     {
         if (philo->base->nb_of_meals && philo->meals_count == philo->base->nb_of_meals)
             return 0;
         _eat(philo);
         _sleep_think(philo);
-    //     pthread_mutex_lock(&philo->base->m_death);
-    //     if (philo->base->is_dead == 0)
-    //         break;
-    //    pthread_mutex_unlock(&philo->base->m_death);
+
     }
    
 
@@ -39,7 +35,7 @@ int    _launch_threads(t_base *data)
         if (pthread_create(&data->tid_arr[i], NULL, rountine, &data->philos[i]))
             return (1);
         pthread_detach(data->tid_arr[i]);
-       usleep(10);
+       usleep(99);
        i++;
     }
     

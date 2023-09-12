@@ -26,7 +26,6 @@ int _fill_structs(t_base *data, int ac, char **av)
     data->start_time = get_time();
 
     return (_init_philos(data));
-
 }
 
 int  _init_philos(t_base *data)

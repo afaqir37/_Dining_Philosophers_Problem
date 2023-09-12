@@ -14,9 +14,9 @@ void    _eat(t_philo *philo)
     philo->meals_count++;
     pthread_mutex_unlock(&philo->count_prot);
     ft_usleep(philo->base->time_to_eat);
-    pthread_mutex_unlock(&philo->mutex[philo->id % philo->base->nb_of_philos]);
     pthread_mutex_unlock(&philo->mutex[philo->id -1]);
-    
+    pthread_mutex_unlock(&philo->mutex[philo->id % philo->base->nb_of_philos]);
+
 }
 
 void    _sleep_think(t_philo *philo)
