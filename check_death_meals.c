@@ -34,11 +34,12 @@ void    _check_meals(t_base *data)
             pthread_mutex_unlock(&data->philos[i].count_prot);
             i++;
         }
-        if (i == data->nb_of_philos - 1)
+        if (i == data->nb_of_philos)
         {
             pthread_mutex_lock(&data->m_death);
             data->is_dead = 0;
             pthread_mutex_unlock(&data->m_death);
+            break;
         }
     }
 }

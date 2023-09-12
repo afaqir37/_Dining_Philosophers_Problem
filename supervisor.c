@@ -16,6 +16,6 @@ void    *supervisor(void *arg)
             pthread_mutex_unlock(&philo->base->m_death);
             break;
         }
-        pthread_mutex_unlock(&philo->meal_prot);
+        pthread_mutex_unlock(&philo->meal_prot); 
     }
 }

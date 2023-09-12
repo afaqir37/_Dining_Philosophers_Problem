@@ -19,7 +19,10 @@ int _fill_structs(t_base *data, int ac, char **av)
         return (1);
     data->tid_arr = malloc(sizeof(pthread_t) * data->nb_of_philos);
     if (!data->tid_arr)
+    {
+        free(data->philos);
         return (1);
+    }
     pthread_mutex_init(&data->print, NULL);
     pthread_mutex_init(&data->m_death, NULL);
 
@@ -33,7 +36,11 @@ int  _init_philos(t_base *data)
     int i = 0;
     pthread_mutex_t *mutex_array = malloc(sizeof(pthread_mutex_t) * data->nb_of_philos);
     if (!mutex_array)
+    {
+        free(data->philos);
+        free(data->tid_arr);
         return (1);
+    }
     while (i < data->nb_of_philos)
     {
         pthread_mutex_init(&mutex_array[i], NULL);

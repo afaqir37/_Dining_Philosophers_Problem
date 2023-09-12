@@ -15,14 +15,17 @@ void    free_all(t_base *s)
     //     pthread_mutex_destroy(&s->philos[i].count_prot);
     //     i++;
     // }
-    free(s->philos[0].mutex);
-    free(s->philos);
-    free(s->tid_arr);
+    if (s->philos[0].mutex)
+        free(s->philos[0].mutex);
+    if (s->philos)
+        free(s->philos);
+    if (s->tid_arr)
+        free(s->tid_arr);
     
     // pthread_mutex_destroy(&s->print);
     // pthread_mutex_destroy(&s->m_death);
-
-    free(s);
+    if (s)
+        free(s);
 }
 
 void _single_philo(t_base *data)
@@ -52,12 +55,15 @@ int main(int ac, char **av)
         free(data);
         return (1);
     }
-    // if (data->nb_of_philos == 1)
-    //     _single_philo(data);
-    
-    if (_launch_threads(data))
+    if (data->nb_of_philos == 1)
     {
-        free(data);
+        _single_philo(data);
+        free_all(data);
+    }
+    
+    else if (_launch_threads(data))
+    {
+        free_all(data);
         return (1);
     }
     //free_all(data);

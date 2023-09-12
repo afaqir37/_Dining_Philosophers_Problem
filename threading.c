@@ -35,20 +35,26 @@ int    _launch_threads(t_base *data)
         if (pthread_create(&data->tid_arr[i], NULL, rountine, &data->philos[i]))
             return (1);
         pthread_detach(data->tid_arr[i]);
-       usleep(99);
+        usleep(99);
        i++;
     }
     
     i = 0;
-  //  usleep(300);
+
     while (data->is_dead) {
-        _check_death(&data->philos[i]);
         _check_meals(data);
+        _check_death(&data->philos[i]);
+        
 
         i++;
         i = i % data->nb_of_philos;
     }
-
+    i = 0;
+    // while (i < data->nb_of_philos)
+    // {
+    //     pthread_join(data->tid_arr[i], NULL);
+    //     i++;
+    // }
     return 0;
 }
 
